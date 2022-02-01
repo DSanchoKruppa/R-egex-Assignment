@@ -21,7 +21,7 @@ library(tidyverse)
 MData <- read.csv("measurements.csv")
 ```
 
-## dplyr + regex = epic
+## dplyr and regex
 
 ```{r}
 MData <- MData %>%
@@ -30,10 +30,6 @@ MData <- MData %>%
 newData <- MData %>% 
   select(Sp, Limb.width, Limb.length, Observer)
 
-
-st <- ("Ixodes scapularis")
-
-sub("(\\w)\\w+", "\\1.", st)
-
+write.csv(newData, "./MeasShort.csv")
 ```
 
