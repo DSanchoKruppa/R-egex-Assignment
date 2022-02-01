@@ -1,5 +1,5 @@
 ---
-title: "A4_DIEGO_SANCHOKRUPPA"
+title: "R-egex Assignment"
 output: pdf_document
 ---
 # Project Info
@@ -8,7 +8,11 @@ output: pdf_document
 **DSanchoKruppa on GitHub**  
 **https://github.com/DSanchoKruppa/R-egexAssignment**  
   
-Project description here
+This project demonstrates some dplyr and regex functionality using the 
+"measurements.csv" file created for the week 1 assignment. It first shortens
+organism genus names to their first initial, then creates a new data.frame
+with the original organism column replaced and finally writes it to a .csv.  
+  
 ___
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -24,12 +28,17 @@ MData <- read.csv("measurements.csv")
 ## dplyr and regex
 
 ```{r}
+# finds and replaces the first word in each organism name and replaces it with
+# its first letter
 MData <- MData %>%
   mutate(Sp = sub("(\\w)\\w+", "\\1.", Organism))
 
+# creates a new dataframe with newly-created Sp replacing Organism as the first
+# column
 newData <- MData %>% 
   select(Sp, Limb.width, Limb.length, Observer)
 
+# Writing the new dataframe to a .csv
 write.csv(newData, "./MeasShort.csv")
 ```
 
