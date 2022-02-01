@@ -1,0 +1,39 @@
+---
+title: "A4_DIEGO_SANCHOKRUPPA"
+output: pdf_document
+---
+# Project Info
+**February 2, 2022**  
+**Diego Sancho Kruppa 20101377**   
+**DSanchoKruppa on GitHub**  
+**https://github.com/DSanchoKruppa/R-egexAssignment**  
+  
+Project description here
+___
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Set up
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+MData <- read.csv("measurements.csv")
+```
+
+## dplyr + regex = epic
+
+```{r}
+MData <- MData %>%
+  mutate(Sp = sub("(\\w)\\w+", "\\1.", Organism))
+
+newData <- MData %>% 
+  select(Sp, Limb.width, Limb.length, Observer)
+
+
+st <- ("Ixodes scapularis")
+
+sub("(\\w)\\w+", "\\1.", st)
+
+```
+
